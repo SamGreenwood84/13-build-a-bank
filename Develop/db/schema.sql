@@ -1,34 +1,34 @@
 -- DROP DATABASE
 DROP DATABASE IF EXISTS ecommerce_db;
 
--- CREATE DATABASE
-CREATE DATABASE ecommerce_db;
+--CREATE DATABASE
+CREATE DATABASE IF NOT EXISTS ecommerce_db;
 
 USE ecommerce_db;
 
-CREATE TABLE category (
+CREATE TABLE IF NOT EXISTS category (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    category_name STRING NOT NULL
+    category_name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE product (
+CREATE TABLE IF NOT EXISTS product (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    product_name STRING NOT NULL,
-    price DECIMAL NOT NULL, --Validates that the value is a decimal
-    stock INT NOT NULL, --Set a default value of 10, Validates that the value is numeric
-    category_id INT, 
-    FOREIGN KEY (category_id) REFERENCES product(id)
+    product_name VARCHAR(255) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL, 
+    stock INT NOT NULL DEFAULT 10 CHECK (stock >= 0), 
+    category_id INT,
+    FOREIGN KEY (category_id) REFERENCES category(id)
 );
 
-CREATE TABLE tag (
+CREATE TABLE IF NOT EXISTS tag (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    tag_name STRING,
+    tag_name VARCHAR(255)
 );
 
-CREATE TABLE productTag (
+CREATE TABLE IF NOT EXISTS productTag (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    product_id INT, 
-    tag_id INT, 
-    FOREIGN KEY (product_id) REFERENCES productTag(id)
-    FOREIGN KEY (tag_id) REFERENCES productTag(id)
+    product_id INT,
+    tag_id INT,
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    FOREIGN KEY (tag_id) REFERENCES tag(id)
 );
