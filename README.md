@@ -27,11 +27,11 @@ Live Demo Video Here
 
 # User Story
 
-AS A manager at an internet retail company
+AS AN artist and designer that has an internet retail company
 
 I WANT a back end for my e-commerce website that uses the latest technologies
 
-SO THAT my company can compete with other e-commerce companies
+SO THAT my art stays relevant and aligned in competiton with other e-commerce companies
 
 # Acceptance Criteria
 
