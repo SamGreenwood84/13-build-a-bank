@@ -33,3 +33,41 @@ THEN the data for each of these routes is displayed in a formatted JSON
 WHEN I test API POST, PUT, and DELETE routes in Insomnia Core
 
 THEN I am able to successfully create, update, and delete data in my database
+
+# Associations
+
+```java
+        +------------------+           +------------------+
+        |     Category     |           |     Product      |
+        +------------------+           +------------------+
+        | id               |<--------->| id               |
+        | name             |           | name             |
+        |                  |<--------->| categoryId       |
+        +------------------+           +------------------+
+                |                               |
+                |                               |
+                |                               |
+                |                               |
+                |                  +------------v-------------+
+                |                  |    ProductTag          |
+                |                  +------------------------+
+                |                  | productId              |
+                |                  | tagId                  |
+                |                  +------------------------+
+                |                               |
+                |                  +------------v-------------+
+                +------------------|     Tag                |
+                                     +------------------------+
+                                     | id                     |
+                                     | name                   |
+                                     +------------------------+
+```
+In this diagram:
+
+Each box represents a table in the database.
+Arrows between boxes represent relationships between the tables.
+The belongsTo relationships are represented by a line with a single arrow pointing to the parent table.
+The hasMany relationships are represented by a line with a single arrow pointing to the child table.
+The belongsToMany relationship is represented by a many-to-many join table (ProductTag), which contains foreign keys to both Product and Tag.
+Product has a foreign key (categoryId) referencing the Category table.
+Product and Tag have a many-to-many relationship through the ProductTag table.
