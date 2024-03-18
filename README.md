@@ -1,6 +1,29 @@
 # 13-e-commerce
 
+# Description 
+
 Object-Relational Mapping (ORM) Challenge: E-commerce Back End
+
+# Table of Contents
+
+- [Live Demo](#live-demo)
+- [Getting Started](#getting-started)
+- [User Story](#user-story)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Built-With](#built-with)
+- [References](#references)
+- [Deployment](#deployment)
+- [License](#license)
+
+# Live Demo
+
+Live Demo Video Here
+
+# Getting Started
+
+1. Clone gitHub repository
+2. NPM Install
+3. Use command server.js
 
 # User Story
 
@@ -34,7 +57,24 @@ WHEN I test API POST, PUT, and DELETE routes in Insomnia Core
 
 THEN I am able to successfully create, update, and delete data in my database
 
-# Associations
+# Built-with
+
+```javascript
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "mysql2": "^3.9.2",
+    "sequelize": "^6.37.1"
+  }
+```
+**Insomnia App**
+
+**MySQL Workbench**
+
+# References
+
+**Bootcamp Spot Modules 12 & 13**
+
+**Associations Diagram**
 
 ```java
         +------------------+           +------------------+
@@ -71,3 +111,16 @@ The hasMany relationships are represented by a line with a single arrow pointing
 The belongsToMany relationship is represented by a many-to-many join table (ProductTag), which contains foreign keys to both Product and Tag.
 Product has a foreign key (categoryId) referencing the Category table.
 Product and Tag have a many-to-many relationship through the ProductTag table.
+
+
+# Deployment
+
+My GitHub Repo Link: [Click Here!](https://)
+
+Live Demo Link: [Click Here!](https://)
+
+# License
+
+MIT License
+
+Copyright (c) 2024 SamGreenwood
