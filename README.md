@@ -22,8 +22,13 @@ Live Demo Video Here
 # Getting Started
 
 1. Clone gitHub repository
-2. NPM Install
-3. Use command server.js
+2. mysql -u root -p 
+3. Enter MYSQL password when prompted
+4. source Develop/db/schema.sql
+5. exit
+6. NPM Install
+7. npm run seed
+8. Use command node server.js
 
 # User Story
 
