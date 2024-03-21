@@ -1,23 +1,21 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// The `/api/categories` endpoint
-
+// GET /api/categories
 router.get('/', async (req, res) => {
   try {
-    // Find all categories and include associated Products
     const categories = await Category.findAll({
       include: [{ model: Product }]
     });
     res.json(categories);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+// GET /api/categories/:id
 router.get('/:id', async (req, res) => {
   try {
-    // Find one category by its `id` value and include associated Products
     const category = await Category.findByPk(req.params.id, {
       include: [{ model: Product }]
     });
@@ -27,54 +25,55 @@ router.get('/:id', async (req, res) => {
     }
     res.json(category);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
+// POST /api/categories
 router.post('/', async (req, res) => {
   try {
-    // Create a new category
     const newCategory = await Category.create(req.body);
     res.status(201).json(newCategory);
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ error: err.message || 'Bad request' });
   }
 });
 
+// PUT /api/categories/:id
 router.put('/:id', async (req, res) => {
   try {
-    // Update a category by its `id` value
-    const updatedCategory = await Category.update(req.body, {
+    const [updatedCount] = await Category.update(req.body, {
       where: {
         id: req.params.id,
       },
     });
-    if (updatedCategory[0] === 0) {
+    if (updatedCount === 0) {
       res.status(404).json({ message: 'Category not found' });
       return;
     }
     res.status(200).json({ message: 'Category updated successfully' });
   } catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ error: err.message || 'Bad request' });
   }
 });
 
+// DELETE /api/categories/:id
 router.delete('/:id', async (req, res) => {
   try {
-    // Delete a category by its `id` value
-    const deletedCategory = await Category.destroy({
+    const deletedCount = await Category.destroy({
       where: {
         id: req.params.id,
       },
     });
-    if (!deletedCategory) {
+    if (deletedCount === 0) {
       res.status(404).json({ message: 'Category not found' });
       return;
     }
     res.status(200).json({ message: 'Category deleted successfully' });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
 module.exports = router;
+
