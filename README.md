@@ -71,7 +71,7 @@ THEN I am able to successfully create, update, and delete data in my database
     "sequelize": "^6.37.1"
   }
 ```
-**Insomnia App**
+**Insomnia for Testing**
 
 **MySQL Workbench**
 

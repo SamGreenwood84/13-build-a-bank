@@ -4,35 +4,4 @@ DROP DATABASE IF EXISTS ecommerce_db;
 -- CREATE DATABASE
 CREATE DATABASE IF NOT EXISTS ecommerce_db;
 
-USE ecommerce_db;
 
--- CREATE TABLES
-CREATE TABLE IF NOT EXISTS category (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    category_name VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS product (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    product_name VARCHAR(50) NOT NULL,
-    price DECIMAL(10, 2) NOT NULL, 
-    stock INT NOT NULL DEFAULT 10 CHECK (stock >= 0), 
-    category_id INT,
-    FOREIGN KEY (category_id) REFERENCES category(id)
-);
-
-CREATE TABLE IF NOT EXISTS tag (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    tag_name VARCHAR(50) NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS productTag (
-    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    product_id INT,
-    tag_id INT,
-    FOREIGN KEY (product_id) REFERENCES product(id),
-    FOREIGN KEY (tag_id) REFERENCES tag(id)
-);
-
--- ALTER TABLE
-ALTER TABLE productTag DROP FOREIGN KEY productTag_ibfk_2;
